@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="SimpleExample" version="1.6">
+    <!-- How Solr chooses DocValues type per each field type: https://lucene.apache.org/solr/guide/7_4/docvalues.html -->
+
+    <fieldType name="string" class="solr.StrField"/>
+    <fieldType name="string_multi" class="solr.StrField" multiValued="true"/>
+    <fieldType name="long" class="solr.TrieLongField"/>
+    <fieldType name="long_multi" class="solr.LongPointField" multiValued="true"/>
+
+    <field name="doc_id" type="long" stored="false" docValues="true"/><!-- DocValues type: NUMERIC -->
+    <field name="size" type="long" stored="false" docValues="true"/><!-- DocValues type: NUMERIC -->
+    <field name="name" type="string" stored="false" docValues="true"/><!-- DocValues type: SORTED -->
+    <field name="tags" type="string_multi" stored="false" docValues="true"/><!-- DocValues type: SORTED_SET -->
+    <field name="prices" type="long_multi" stored="false" docValues="true"/><!-- DocValues type: SORTED_NUMERIC -->
+    <field name="desc" type="string" stored="false" docValues="false"/><!-- DocValues - disabled -->
+
+
+    <uniqueKey>doc_id</uniqueKey>
+</schema>
